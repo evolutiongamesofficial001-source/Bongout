@@ -17,18 +17,18 @@
 
 body{
   background:#000;
-  color:white;
+  color:#fff;
   overflow-x:hidden;
 }
 
-/* FUNDO PREMIUM ANIMADO */
+/* FUNDO ANIMADO */
 .bg{
   position:fixed;
   inset:0;
   background:linear-gradient(120deg,#020024,#090979,#00d4ff,#090979,#020024);
   background-size:600% 600%;
   animation:bgAnim 20s ease infinite;
-  z-index:-2;
+  z-index:-1;
 }
 
 @keyframes bgAnim{
@@ -37,14 +37,14 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* CONTAINER MOBILE */
+/* CONTAINER */
 .container{
   max-width:500px;
   margin:auto;
   padding:20px;
 }
 
-/* CARD APP */
+/* CARD */
 .app-card{
   background:rgba(0,0,0,.6);
   backdrop-filter:blur(14px);
@@ -54,45 +54,35 @@ body{
   box-shadow:0 20px 60px rgba(0,0,0,.7);
 }
 
-/* TOPO APP */
-.app-header{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
+/* HEADER */
 .app-title{
   font-size:2.2rem;
   font-weight:700;
-  letter-spacing:1px;
 }
 
 .app-dev{
   font-size:.95rem;
   opacity:.8;
+  margin-bottom:12px;
 }
 
-.app-meta{
+.meta{
   display:flex;
-  gap:12px;
-  margin-top:6px;
-  font-size:.85rem;
-  opacity:.9;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
-.meta-box{
-  background:rgba(255,255,255,.1);
+.meta span{
+  background:rgba(255,255,255,.12);
   padding:6px 12px;
   border-radius:999px;
+  font-size:.85rem;
 }
 
 /* BOTÃO */
-.download-area{
-  margin-top:22px;
-}
-
 .btn-download{
   width:100%;
+  margin-top:22px;
   padding:15px;
   border:none;
   border-radius:14px;
@@ -106,11 +96,11 @@ body{
 }
 
 .btn-download:active{
-  transform:scale(.98);
+  transform:scale(.97);
 }
 
-/* INFO APP */
-.app-info-row{
+/* INFO */
+.info-row{
   display:flex;
   justify-content:space-between;
   margin-top:12px;
@@ -120,8 +110,8 @@ body{
 
 /* PROGRESSO */
 .progress-box{
-  margin-top:14px;
   display:none;
+  margin-top:14px;
 }
 
 .progress-text{
@@ -141,7 +131,6 @@ body{
   width:0%;
   height:100%;
   background:linear-gradient(90deg,#00e5ff,#00b4d8);
-  transition:.25s;
 }
 
 /* DESCRIÇÃO */
@@ -158,38 +147,16 @@ body{
   color:#00e5ff;
 }
 
-/* TABELA SIMPLES */
-.table-box{
-  margin-top:22px;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:.95rem;
-}
-
-td{
-  padding:9px 10px;
-  border-bottom:1px solid rgba(255,255,255,.12);
-}
-
-td:first-child{
-  font-weight:600;
-}
-
-td:last-child{
-  text-align:right;
-}
-
+/* FOOTER */
 .footer-note{
-  margin-top:10px;
+  margin-top:22px;
   font-size:.85rem;
   opacity:.7;
   text-align:center;
 }
 </style>
 </head>
+
 <body>
 
 <div class="bg"></div>
@@ -197,94 +164,69 @@ td:last-child{
 <div class="container">
   <div class="app-card">
 
-    <div class="app-header">
-      <div class="app-title">S.A.R</div>
-      <div class="app-dev">Evolution Studio • App de parceiro</div>
+    <div class="app-title">Bon Gout</div>
+    <div class="app-dev">Evolution Studio • App de parceiro</div>
 
-      <div class="app-meta">
-        <div class="meta-box">Encomenda</div>
-        <div class="meta-box">Pedidos</div>
-        <div class="meta-box">Doces</div>
-      </div>
+    <div class="meta">
+      <span>Pedidos</span>
+      <span>Trufas</span>
+      <span>Doces</span>
     </div>
 
-    <div class="download-area">
-      <button class="btn-download" id="downloadBtn">Instalar</button>
+    <button class="btn-download" id="downloadBtn">Instalar</button>
 
-      <div class="app-info-row">
-        <span>📦 Tamanho: <span id="fileSize">...</span></span>
-        <span>📥 Downloads: <span id="downloadCount">...</span></span>
-      </div>
+    <div class="info-row">
+      <span>📦 Tamanho: <span id="fileSize">...</span></span>
+      <span>📥 Downloads: <span id="downloadCount">0</span></span>
+    </div>
 
-      <div class="progress-box" id="progressBox">
-        <div class="progress-text" id="progressText">Iniciando análise de segurança...</div>
-        <div class="progress-bar">
-          <div class="progress" id="progress"></div>
-        </div>
+    <div class="progress-box" id="progressBox">
+      <div class="progress-text" id="progressText">Iniciando...</div>
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
       </div>
     </div>
 
     <div class="description">
       <h3>Sobre a Bon Gout</h3>
       <p>
-        A Bon Gout é uma aplicação móvel desenvolvida pela Evolution Studio, projetada para te ajudar a pedir trufas Em Prata-MG e na Unitri
+        A Bon Gout é uma aplicação móvel desenvolvida pela Evolution Studio,
+        criada para facilitar pedidos de trufas em Prata-MG e na Unitri.
       </p>
       <p>
-        Trufas deliciosas com apenas alguns toques na tela do seu smartphone.
-      </p>
-      <p>
-        Com uma interface amigável e intuitiva, você pode navegar por uma variedade de sabores, escolher suas trufas favoritas 
-        e fazer pedidos de forma rápida e segura.
+        Escolha seus sabores favoritos e faça pedidos de forma rápida,
+        prática e segura direto pelo celular.
       </p>
     </div>
 
-    
-
     <div class="footer-note">
-        Desenvolvido por Evolution Studio • Todos os direitos reservados © 2024
+      Desenvolvido por Evolution Studio • © 2024
     </div>
 
   </div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-import { getDatabase, ref, get, runTransaction } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-
-/* FIREBASE */
-const firebaseConfig = {
-  databaseURL: ""
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const counterRef = ref(db, "downloads");
-
-async function loadDownloads(){
-  const snap = await get(counterRef);
-  let val = snap.exists() ? snap.val() : 0;
-  document.getElementById("downloadCount").innerText = val;
-}
-loadDownloads();
+<script>
+/* CONTADOR LOCAL */
+let downloads = localStorage.getItem("downloads") || 0;
+document.getElementById("downloadCount").innerText = downloads;
 
 /* TAMANHO REAL DO APK */
-async function loadFileSize(){
-  try{
-    const res = await fetch("app-release.apk", { method: "HEAD" });
-    const size = res.headers.get("content-length");
+fetch("Bongout.apk", { method: "HEAD" })
+  .then(r => {
+    const size = r.headers.get("content-length");
     if(size){
-      const mb = (size / (1024*1024)).toFixed(2);
-      document.getElementById("fileSize").innerText = mb + " MB";
+      document.getElementById("fileSize").innerText =
+        (size / (1024*1024)).toFixed(2) + " MB";
     }else{
       document.getElementById("fileSize").innerText = "Desconhecido";
     }
-  }catch(e){
+  })
+  .catch(()=>{
     document.getElementById("fileSize").innerText = "Indisponível";
-  }
-}
-loadFileSize();
+  });
 
-/* DOWNLOAD COM ANIMAÇÃO */
+/* DOWNLOAD */
 const btn = document.getElementById("downloadBtn");
 const box = document.getElementById("progressBox");
 const bar = document.getElementById("progress");
@@ -297,34 +239,31 @@ btn.onclick = async () => {
 
   const steps = [
     "Escaneando aplicativo...",
-    "Verificando vulnerabilidades...",
-    "Validando assinatura digital...",
-    "Executando teste de segurança...",
+    "Verificando integridade...",
+    "Validando segurança...",
     "Autorizando instalação..."
   ];
 
-  let progress = 0;
-
-  for(let i=0;i<steps.length;i++){
-    text.innerText = steps[i];
-    for(let j=0;j<20;j++){
-      progress += 1;
-      bar.style.width = progress + "%";
-      await new Promise(r=>setTimeout(r,40));
+  let p = 0;
+  for(let s of steps){
+    text.innerText = s;
+    for(let i=0;i<25;i++){
+      p++;
+      bar.style.width = p + "%";
+      await new Promise(r=>setTimeout(r,30));
     }
   }
 
-  await runTransaction(counterRef, (current) => {
-    return (current || 0) + 1;
-  });
+  downloads++;
+  localStorage.setItem("downloads", downloads);
+  document.getElementById("downloadCount").innerText = downloads;
 
-  loadDownloads();
-  text.innerText = "Download liberado ✔";
+  text.innerText = "Download iniciado ✔";
 
   setTimeout(()=>{
     window.location.href = "Bongout.apk";
     btn.disabled = false;
-  }, 800);
+  },600);
 };
 </script>
 
